@@ -1,0 +1,17 @@
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Cia</th>
+        <th>Placa</th>
+        <th>Tipo</th>
+    </tr>
+    {% for row in users %}
+    <tr>
+        <td>{{ row.id }}</td>
+        <td>{{ row.cia }}</td>
+        <td>{{ row.placa }}</td>
+        <td>{{ row.tipo }}</td>
+    </tr>
+    {% endfor %}
+
+</table>

@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container mt-3">
+
+
+    <div class="row">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Hey!</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        {% endfor%}
+        {% endif %}
+        {% endwith%}
+
+
+        <div class="col-md-5 container-fluid">
+            <div class="card mt-3 text-white bg-dark mb-3">
+                <div class="card-header">
+                    Insertar Mecanico
+                </div>
+                <div class="card card-body">
+                    <form action="crear_mecanico" method="POST">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="nombre" placeholder="Nombre del Mecanico">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="cargo" placeholder="Cargo Dentro la Institución">
+                        </div>
+                        
+                        <button class="btn btn-primary form-control " type="submit">
+                            Registrar
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-7">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Cargo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in mecanicos %}
+                    <tr>
+                        <th scope="row">{{ row.id}}</th>
+                        <td>{{ row.nombre }}</td>
+                        <td>{{ row.cargo }}</td>
+                        <td>
+
+                            <a href="/editar/{{row.id}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                            <a href="/eliminar/{{row.id}}" class="btn btn-danger btn-delete btn-sm"><i class="fa fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

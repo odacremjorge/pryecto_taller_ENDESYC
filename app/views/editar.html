@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container mt-3">
+    <div class="row">
+
+        <div class="col-md-5 container-fluid">
+            <div class="card mt-3 text-white bg-dark mb-3">
+                <div class="card-header">
+                    {{title}}
+                </div>
+                <div class="card card-body">
+                    <form action="/actualizar/{{vehiculo.id}}" method="POST">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{vehiculo.cia}}" name="cia" placeholder="Compañia">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{vehiculo.empresa}}" name="empresa" placeholder="Empresa o Institución">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{vehiculo.placa}}" name="placa" placeholder="Placa de Control">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{vehiculo.tipo}}" name="tipo" placeholder="Tipo de Vehiculo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{vehiculo.marca}}" name="marca" placeholder="Marca del Vehiculo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{vehiculo.modelo}}" name="modelo" placeholder="Modelo del Vehiculo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{vehiculo.año}}" name="año" placeholder="Año de Creación">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{vehiculo.color}}" name="color" placeholder="Color del Vehiculo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{vehiculo.cilindrada}}" name="cilindrada" placeholder="Cilindrada del Vehiculo">
+                        </div>
+
+                        <button class="btn btn-primary form-control " type="submit">
+                            Registrar
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

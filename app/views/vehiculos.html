@@ -1,0 +1,118 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container mt-3">
+
+
+    <div class="row">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Hey!</strong> {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        {% endfor%}
+        {% endif %}
+        {% endwith%}
+
+
+        <div class="col-md-4 container-fluid">
+            <div class="card mt-2 text-white bg-dark mb-4">
+                <div class="card-header">
+                    Insertar Vehiculo
+                </div>
+                <div class="card card-body">
+                    <form action="crear_vehiculo" method="POST">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="cia" placeholder="Compañia">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="empresa" placeholder="Empresa o Institución">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="placa" placeholder="Placa de Control">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="tipo" placeholder="Tipo de Vehiculo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="marca" placeholder="Marca del Vehiculo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="modelo" placeholder="Modelo del Vehiculo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="año" placeholder="Año de Creación">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="color" placeholder="Color del Vehiculo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="cilindrada" placeholder="Cilindrada del Vehiculo">
+                        </div>
+
+                        <button class="btn btn-primary form-control " type="submit">
+                            Registrar
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Cia</th>
+                        <th scope="col">Empresa</th>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Año</th>
+                        <th scope="col">Color</th>
+                        <th scope="col">Cilindrada</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in vehiculos %}
+                    <tr>
+                        <th scope="row">{{ row.id}}</th>
+                        <td>{{ row.cia }}</td>
+                        <td>{{ row.empresa }}</td>
+                        <td>{{ row.placa }}</td>
+                        <td>{{ row.tipo }}</td>
+                        <td>{{ row.marca }}</td>
+                        <td>{{ row.modelo }}</td>
+                        <td>{{ row.año }}</td>
+                        <td>{{ row.color }}</td>
+                        <td>{{ row.cilindrada }}</td>
+                        <td>
+
+                            <a href="/editar/{{row.id}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                            <a href="/eliminar/{{row.id}}" class="btn btn-danger btn-delete btn-sm"><i class="fa fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}
