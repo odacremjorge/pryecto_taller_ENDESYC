@@ -1,13 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from app import db
 
-#La clase Registromecanicos es el modelo de asociacion 
-# #entre dos modelos que lleva atributos
-class Registromecanicos(db.Model):
-    __tablename__ = 'registromecanicos'
-    vehiculo_id = db.Column(db.Integer, db.ForeignKey('vehiculos.id'), primary_key=True)
-    mecanico_id = db.Column(db.Integer, db.ForeignKey('mecanicos.id'), primary_key=True)
-    seccion = db.Column(db.String(20))
+#Relacion de muchos a muchos
+generarots = db.Table('generarots', db.Column('ot_id', db.Integer, db.ForeignKey('ots.id'), primary_key=True), db.Column('vehiculo_id', db.Integer, db.ForeignKey('vehiculos.id'), primary_key=True))
+
 
 class Vehiculo(db.Model):
     __tablename__ = 'vehiculos'

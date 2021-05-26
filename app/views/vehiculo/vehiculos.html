@@ -20,7 +20,7 @@
         {% endwith%}
 
 
-        <div class="col-md-4 container-fluid">
+        <div class="col-md-5 container-fluid">
             <div class="card mt-2 text-white bg-dark mb-4">
                 <div class="card-header">
                     Insertar Vehiculo
@@ -65,7 +65,7 @@
 
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
@@ -98,7 +98,7 @@
                         <td>
 
                             <a href="/editar/{{row.id}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                            <a href="/eliminar/{{row.id}}" class="btn btn-danger btn-delete btn-sm"><i class="fa fa-trash-alt"></i></a>
+                            <a href="/eliminar/{{row.id}}" class="btn btn-danger btn-delete btn-sm" onclick="return confirm('¿Seguro que quiere eliminar el registro de vehículo?')"><i class="fa fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     {% endfor %}

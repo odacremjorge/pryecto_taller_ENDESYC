@@ -8,16 +8,17 @@ class MecanicoController():
     def index(self):
         from app.models.Mecanico import Mecanico
         mecanicos = Mecanico.query.all()
-        return render_template('mecanicos.html', mecanicos=mecanicos)
+        return render_template('mecanico/mecanicos.html', mecanicos=mecanicos)
     
     def crearMecanico(self):
         if request.method == 'POST':
-            nombre = request.form['nombre']
+            nombreMecanico = request.form['nombreMecanico']
             cargo = request.form['cargo']
+            telefono = request.form['telefono']
            
 
             from app.models.Mecanico import Mecanico
-            mecanico = Mecanico(nombre = nombre, cargo = cargo)
+            mecanico = Mecanico(nombreMecanico = nombreMecanico, cargo = cargo, telefono = telefono)
             db.session.add(mecanico)
             db.session.commit()
 
@@ -31,6 +32,30 @@ class MecanicoController():
         db.session.commit()
         flash('Eimnacion exitosa')
         return redirect(url_for('mecanico_router.mecanicos'))
+
+    def editarMecanico(self, _id):
+        from app.models.Mecanico import Mecanico
+        mecanico = Mecanico.query.get(_id)
+        return render_template('mecanico/editar.html', title='Editar', mecanico = mecanico)
+
+    def actualizarMecanico(self, _id):
+        if request.method == 'POST':
+            nombreMecanico = request.form['nombreMecanico']
+            cargo = request.form['cargo']
+            telefono = request.form['telefono']
+            
+
+            from app.models.Mecanico import Mecanico
+            mecanico = Mecanico.query.get(_id)
+            mecanico.nombreMecanico = nombreMecanico 
+            mecanico.cargo = cargo
+            mecanico.telefono = telefono
+            
+            
+            db.session.commit()
+
+            flash('Registro actualizado con exito')
+            return redirect(url_for('mecanico_router.mecanicos'))
 
 
 mecanicocontroller = MecanicoController()

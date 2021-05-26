@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container mt-3">
+    <div class="row">
+
+        <div class="col-md-5 container-fluid">
+            <div class="card mt-3 text-white bg-dark mb-3">
+                <div class="card-header">
+                    {{title}}
+                </div>
+                <div class="card card-body">
+                    <form action="/actualizar_mecanico/{{mecanico.id}}" method="POST">
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{mecanico.nombreMecanico}}" name="nombreMecanico" placeholder="Nombre">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{mecanico.cargo}}" name="cargo" placeholder="Cargo">
+                        </div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" value="{{mecanico.telefono}}" name="telefono" placeholder="Telefono">
+                        </div>
+                        <button class="btn btn-primary form-control " type="submit">
+                            Registrar
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

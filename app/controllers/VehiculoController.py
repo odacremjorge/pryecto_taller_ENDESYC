@@ -8,7 +8,7 @@ class VehiculoController():
     def index(self):
         from app.models.Vehiculo import Vehiculo
         vehiculos = Vehiculo.query.all()
-        return render_template('vehiculos.html', vehiculos=vehiculos)
+        return render_template('vehiculo/vehiculos.html', vehiculos=vehiculos)
     
     def crearVehiculo(self):
         if request.method == 'POST':
@@ -41,7 +41,7 @@ class VehiculoController():
     def editarVehiculo(self, _id):
         from app.models.Vehiculo import Vehiculo
         vehiculo = Vehiculo.query.get(_id)
-        return render_template('editar.html', title='Editar', vehiculo = vehiculo)
+        return render_template('vehiculo/editar.html', title='Editar', vehiculo = vehiculo)
 
     def actualizarVehiculo(self, _id):
         if request.method == 'POST':
