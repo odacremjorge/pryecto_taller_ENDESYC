@@ -8,7 +8,7 @@ class MecanicoController():
     def index(self):
         from app.models.Mecanico import Mecanico
         mecanicos = Mecanico.query.all()
-        return render_template('mecanico/mecanicos.html', mecanicos=mecanicos)
+        return render_template('mecanicos/mecanicos.html', mecanicos=mecanicos)
     
     def crearMecanico(self):
         if request.method == 'POST':
@@ -36,7 +36,7 @@ class MecanicoController():
     def editarMecanico(self, _id):
         from app.models.Mecanico import Mecanico
         mecanico = Mecanico.query.get(_id)
-        return render_template('mecanico/editar.html', title='Editar', mecanico = mecanico)
+        return render_template('mecanicos/editar.html', title='Editar', mecanico = mecanico)
 
     def actualizarMecanico(self, _id):
         if request.method == 'POST':

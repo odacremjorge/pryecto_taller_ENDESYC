@@ -1,16 +1,18 @@
-from flask import render_template, request, flash, redirect, url_for
 from app import db
+from flask import render_template, request, redirect, url_for, flash
+from app.models.Vehiculo import Vehiculo
 
 class VehiculoController():
     def __init__(self):
         pass
 
     def index(self):
-        from app.models.Vehiculo import Vehiculo
         vehiculos = Vehiculo.query.all()
-        return render_template('vehiculo/vehiculos.html', vehiculos=vehiculos)
+        return render_template('vehiculos/index.html', tittle='Vehiculos', vehiculos=vehiculos)
     
     def crearVehiculo(self):
+        return render_template('vehiculos/create.html', title='Nuevo vehiculo')
+    def guardarVehiculo(self):
         if request.method == 'POST':
             cia = request.form['cia']
             empresa = request.form['empresa']
@@ -22,26 +24,26 @@ class VehiculoController():
             color = request.form['color']
             cilindrada = request.form['cilindrada']
 
-            from app.models.Vehiculo import Vehiculo
+            
             vehiculo = Vehiculo(cia = cia, empresa = empresa, placa = placa, tipo = tipo, marca = marca, modelo = modelo, año = año, color = color, cilindrada = cilindrada)
             db.session.add(vehiculo)
             db.session.commit()
 
             flash('Registro exitoso')
-            return redirect(url_for('vehiculo_router.vehiculos'))
+            return redirect(url_for('vehiculo_router.principal'))
 
     def eliminarVehiculo(self, _id):
-        from app.models.Vehiculo import Vehiculo
+        
         vehiculo = Vehiculo.query.get(_id)
         db.session.delete(vehiculo)
         db.session.commit()
         flash('Eimnacion exitosa')
-        return redirect(url_for('vehiculo_router.vehiculos'))
+        return redirect(url_for('vehiculo_router.principal'))
 
     def editarVehiculo(self, _id):
-        from app.models.Vehiculo import Vehiculo
+        
         vehiculo = Vehiculo.query.get(_id)
-        return render_template('vehiculo/editar.html', title='Editar', vehiculo = vehiculo)
+        return render_template('vehiculos/edit.html', title='Editar', vehiculo = vehiculo)
 
     def actualizarVehiculo(self, _id):
         if request.method == 'POST':
@@ -55,7 +57,7 @@ class VehiculoController():
             color = request.form['color']
             cilindrada = request.form['cilindrada']
 
-            from app.models.Vehiculo import Vehiculo
+            
             vehiculo = Vehiculo.query.get(_id)
             vehiculo.cia = cia 
             vehiculo.empresa = empresa
@@ -70,7 +72,7 @@ class VehiculoController():
             db.session.commit()
 
             flash('Registro actualizado con exito')
-            return redirect(url_for('vehiculo_router.vehiculos'))
+            return redirect(url_for('vehiculo_router.principal'))
 
 
 vehiculocontroller = VehiculoController()

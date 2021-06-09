@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Celular</th>
+        <th>Rol</th>
+        <th>Cuenta</th>
+        <th>Password</th>
+    </tr>
+    {% for row in usuarios %}
+    <tr>
+        <td>{{ row.id }}</td>
+        <td>{{ row.nombre }}</td>
+        <td>{{ row.email }}</td>
+        <td>{{ row.celular }}</td>
+        <td>{{ row.rol }}</td>
+        <td>{{ row.cuenta }}</td>
+        <td>{{ row.password }}</td>
+    </tr>
+    {% endfor %}
+
+</table>

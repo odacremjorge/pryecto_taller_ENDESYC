@@ -1,0 +1,124 @@
+{% extends 'layouts/layout.html' %}
+
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Hey!</strong> {{ message }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+{% endfor%}
+{% endif %}
+{% endwith%}
+
+
+<section class="vh-90" style="background-color: #618594;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-12">
+                <div class="card" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="https://z-p3-scontent.flpb2-2.fna.fbcdn.net/v/t1.6435-0/p526x296/199180273_1224694744634291_5156398721726802207_n.jpg?_nc_cat=111&ccb=1-3&_nc_sid=730e14&_nc_ohc=LiIj_ZaCY58AX_Vl0Fd&_nc_ht=z-p3-scontent.flpb2-2.fna&tp=6&oh=1c745517f7da4a9e72d7a0820edebe95&oe=60E39C90"
+                                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+
+                                <form action="register" method="POST">
+
+                                    <div class="d-flex align-items-center mb-3 pb-1">
+                                        <i class="fa fa-user fa-2x me-3" style="color: #080808;"></i>
+                                        <span class="h1 fw-bold mb-0">Registrar Usuario</span>
+                                    </div>
+
+                                 <!--   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Registrarse</h5> -->
+                                    <div class="form-outline mb-4">
+                                        <input type="text" name="nombre" id="form2Example17" class="form-control form-control-lg" />
+                                        <label class="form-label" for="form2Example17">Nombre</label>
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="email"  name="email" id="form2Example17" class="form-control form-control-lg" />
+                                        <label class="form-label" for="form2Example17">Email address</label>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="password" name="password" class="form-control" id="floatingPassword"
+                                            placeholder="Password">
+                                        <label class="form-label" for="form2Example27">Password</label>
+                                    </div>
+
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Registrarse</button>
+                                    </div>
+
+                                    <a class="small text-muted" href="#!">Olvidaste la contraseña?</a>
+                                    <p>
+                                    </p>
+                                 <!--  <p class="mb-5 pb-lg-2" style="color: #393f81;">No tienes cuenta? <a href="#!"
+                                             style="color: #393f81;">Registre aqui</a></p> -->
+                                    <a href="#!" class="small text-muted">Terminos de uso.</a>
+                                    <a href="#!" class="small text-muted">Politica de privacidad</a>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+<!-- Estilos CSS -->
+{% block css%}
+<style>
+    /* html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+    }
+
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: auto;
+    }
+
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
+
+    .form-signin .form-floating:focus-within {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    } */
+</style>
+{% endblock %}
+<!-- Java Scripts -->
+{% block js%}
+
+{% endblock %}
