@@ -1,6 +1,17 @@
 from flask_sqlalchemy import SQLAlchemy
 from app import db
 
+class Historial(db.Model):
+    __tablename__ = 'historiales'
+    id = db.Column(db.Integer, primary_key=True,  autoincrement=True)
+    titulo = db.Column(db.String(100))
+    descripcion = db.Column(db.String(255))
+    urlimage = db.Column(db.String(150))
+
+
+"""from flask_sqlalchemy import SQLAlchemy
+from app import db
+
 #Relacion de muchos a muchos
 ingresartrabajos = db.Table('ingresartrabajos', db.Column('ot_id', db.Integer, db.ForeignKey('ots.id'), primary_key=True), db.Column('historial_id', db.Integer, db.ForeignKey('historiales.id'), primary_key=True))
 
@@ -20,4 +31,4 @@ class Historial(db.Model):
     servicioExterno = db.Column(db.String(200))
 
 # Atributo o la clave foranea
-    vehiculo_id = db.Column(db.Integer, db.ForeignKey('vehiculos.id'), nullable=False)
+    vehiculo_id = db.Column(db.Integer, db.ForeignKey('vehiculos.id'), nullable=False)"""

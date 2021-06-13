@@ -28,13 +28,13 @@
                             <input class="form-control" type="text" value="{{vehiculo.cia}}" name="cia" placeholder="Compañia">
                         </div>
                         <div class="input-group mb-3">
-                            <input class="form-control" type="text" value="{{vehiculo.empresa}}" name="empresa" placeholder="Empresa o Institución">
+                            <input class="form-control" type="text" value="{{vehiculo.empresa}}" name="empresa" id="sololetras" placeholder="Empresa o Institución">
                         </div>
                         <div class="input-group mb-3">
                             <input class="form-control" type="text" value="{{vehiculo.placa}}" name="placa" placeholder="Placa de Control">
                         </div>
                         <div class="input-group mb-3">
-                            <input class="form-control" type="text" value="{{vehiculo.tipo}}" name="tipo" placeholder="Tipo de Vehiculo">
+                            <input class="form-control" type="text" value="{{vehiculo.tipo}}" name="tipo" id="sololetras1" placeholder="Tipo de Vehiculo">
                         </div>
                         <div class="input-group mb-3">
                             <input class="form-control" type="text" value="{{vehiculo.marca}}" name="marca" placeholder="Marca del Vehiculo">
@@ -43,10 +43,10 @@
                             <input class="form-control" type="text" value="{{vehiculo.modelo}}" name="modelo" placeholder="Modelo del Vehiculo">
                         </div>
                         <div class="input-group mb-3">
-                            <input class="form-control" type="text" value="{{vehiculo.año}}" name="año" placeholder="Año de Creación">
+                            <input class="form-control" type="text" value="{{vehiculo.año}}" name="año" id="solonumeros" placeholder="Año de Creación">
                         </div>
                         <div class="input-group mb-3">
-                            <input class="form-control" type="text" value="{{vehiculo.color}}" name="color" placeholder="Color del Vehiculo">
+                            <input class="form-control" type="text" value="{{vehiculo.color}}" name="color" id="sololetras2" placeholder="Color del Vehiculo">
                         </div>
                         <div class="input-group mb-3">
                             <input class="form-control" type="text" value="{{vehiculo.cilindrada}}" name="cilindrada" placeholder="Cilindrada del Vehiculo">
@@ -72,5 +72,52 @@
 {% endblock %}
 <!-- Java Scripts -->
 {% block js%}
+
+<script>
+    function forceLower(strInput) {
+        strInput.value = strInput.value.toLowerCase();
+    }
+
+    // Restricts input for the given textbox to the given inputFilter.
+    function setInputFilter(textbox, inputFilter) {
+        ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+            textbox.addEventListener(event, function() {
+                if (inputFilter(this.value)) {
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                    this.value = "";
+                }
+            });
+        });
+    }
+    //Solo acepta El abecedario 
+    setInputFilter(document.getElementById("sololetras"), function(value) {
+        return /^[a-z, ""]*$/i.test(value);
+    });
+
+    setInputFilter(document.getElementById("sololetras1"), function(value) {
+        return /^[a-z, ""]*$/i.test(value);
+    });
+
+    setInputFilter(document.getElementById("sololetras2"), function(value) {
+        return /^[a-z, ""]*$/i.test(value);
+    });
+
+    //Edad validacion
+    setInputFilter(document.getElementById("solonumeros"), function(value) {
+        return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 2050);
+    });
+    //Solo acepta coordenadas
+    setInputFilter(document.getElementById("gps"), function(value) {
+        return /^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/i.test(value);
+    });
+
+
+</script>
 
 {% endblock %}

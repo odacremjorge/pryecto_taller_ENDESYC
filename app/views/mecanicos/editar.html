@@ -13,13 +13,13 @@
                 <div class="card card-body">
                     <form action="/actualizar_mecanico/{{mecanico.id}}" method="POST">
                         <div class="input-group mb-3">
-                            <input class="form-control" type="text" value="{{mecanico.nombreMecanico}}" name="nombreMecanico" placeholder="Nombre">
+                            <input class="form-control" type="text" value="{{mecanico.nombreMecanico}}" name="nombreMecanico" id="sololetras" placeholder="Nombre">
                         </div>
                         <div class="input-group mb-3">
-                            <input class="form-control" type="text" value="{{mecanico.cargo}}" name="cargo" placeholder="Cargo">
+                            <input class="form-control" type="text" value="{{mecanico.cargo}}" name="cargo" id="sololetras1" placeholder="Cargo">
                         </div>
                         <div class="input-group mb-3">
-                            <input class="form-control" type="text" value="{{mecanico.telefono}}" name="telefono" placeholder="Telefono">
+                            <input class="form-control" type="text" value="{{mecanico.telefono}}" name="telefono" id="solonumeros" placeholder="Telefono">
                         </div>
                         <button class="btn btn-primary form-control " type="submit">
                             Registrar
@@ -34,3 +34,47 @@
 
 
 {% endblock %}
+
+{% block js%}
+
+
+<script>
+    function forceLower(strInput) {
+        strInput.value = strInput.value.toLowerCase();
+    }
+
+    // Restricts input for the given textbox to the given inputFilter.
+    function setInputFilter(textbox, inputFilter) {
+        ["input", "keydown", "keyup", "mousedown", "mouseup", "select", "contextmenu", "drop"].forEach(function(event) {
+            textbox.addEventListener(event, function() {
+                if (inputFilter(this.value)) {
+                    this.oldValue = this.value;
+                    this.oldSelectionStart = this.selectionStart;
+                    this.oldSelectionEnd = this.selectionEnd;
+                } else if (this.hasOwnProperty("oldValue")) {
+                    this.value = this.oldValue;
+                    this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
+                } else {
+                    this.value = "";
+                }
+            });
+        });
+    }
+    //Solo acepta El abecedario 
+    setInputFilter(document.getElementById("sololetras"), function(value) {
+        return /^[a-z, ""]*$/i.test(value);
+    });
+
+    setInputFilter(document.getElementById("sololetras1"), function(value) {
+        return /^[a-z, ""]*$/i.test(value);
+    });
+
+    //Telefono validacion
+    setInputFilter(document.getElementById("solonumeros"), function(value) {
+        return /^\d*$/.test(value) && (value === "" || parseInt(value) <= 99999999);
+    });
+    
+</script>
+
+{% endblock %}
+<!-- Fin bloque scripts -->

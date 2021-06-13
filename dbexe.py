@@ -6,6 +6,7 @@ from app.models.Cliente import Cliente
 from app.models.Historial import Historial
 from app.models.Repuesto import Repuesto
 from app.models.Ose import Ose
+from app.models.Trabajo import Trabajo
 from app import db
 
 #db.drop_all()

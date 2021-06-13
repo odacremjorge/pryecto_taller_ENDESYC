@@ -38,3 +38,15 @@ app.register_blueprint(vehiculo_router)
 
 from app.routes.mecanico_router import mecanico_router
 app.register_blueprint(mecanico_router)
+
+from app.routes.historial_router import historial_router
+app.register_blueprint(historial_router)
+
+from app.routes.trabajo_router import trabajo_router
+app.register_blueprint(trabajo_router)
+
+from app.routes.verhistorial_router import verhistorial_router
+app.register_blueprint(verhistorial_router)
+
+from app.routes.vertrabajo_router import vertrabajo_router
+app.register_blueprint(vertrabajo_router)

@@ -1,0 +1,47 @@
+{% extends 'layouts/layout.html' %}
+
+{% block body %}
+<center>
+<div class="container">
+    <div id="content" class="card" style="width: 18rem;">
+        <img src="{{ url_for('static', filename='uploads/' + detalle.urlimage) }}" class="card-img-top"
+            alt="{{ url_for('static', filename='uploads/' + detalle.urlimage) }}">
+        <div class="card-body">
+            <h5 class="card-title">{{detalle.titulo}}</h5>
+            <p class="card-text">{{detalle.descripcion}}.</p>
+            
+        </div>
+        
+    </div>
+    <a href="{{url_for('verhistorial_router.verhistoriales')}}" class="btn btn-primary">Ir atras</a>
+    <button id="cmd" onclick='printDiv();' class="btn btn-danger">Imprimir</button>
+</div>
+</center>
+{% endblock %}
+<!-- Estilos CSS -->
+{% block css%}
+
+{% endblock %}
+<!-- Java Scripts -->
+{% block js%}
+<script>
+    
+        function printDiv() {
+
+        var divToPrint = document.getElementById('content');
+
+        var newWin = window.open('', 'Print-Window');
+
+        newWin.document.open();
+
+        newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+
+        newWin.document.close();
+
+        setTimeout(function () { newWin.close(); }, 10);
+
+    }
+    
+</script>
+{% endblock %}
+<!-- Fin bloque scripts -->
