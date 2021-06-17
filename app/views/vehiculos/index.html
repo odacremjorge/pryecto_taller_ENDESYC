@@ -32,7 +32,7 @@
 
         <div class="card mt-3 ">
             <div class="row">
-                <table id="myTable" class="display" style="width:100%">
+                <table id="myTable" class="cell-border compact stripe" style="width:100%">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -62,8 +62,8 @@
                             <td>{{ row.color }}</td>
                             <td>{{ row.cilindrada }}</td>
                             <td>
-                                <a href="/vehiculos/editar/{{row.id}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                                <a href="/vehiculos/eliminarvehiculo/{{row.id}}" onclick=" return confirm('¿Seguro desea eliminar este registro de vehiculo?')" class="btn btn-danger btn-delete btn-sm"><i class="fa fa-trash"></i></a>
+                                <a href="/vehiculos/editar/{{row.id}}" class="btn btn-outline-info btn-block btn-flat"><i class="fa fa-edit"></i></a>
+                                <a href="/vehiculos/eliminarvehiculo/{{row.id}}" onclick=" return confirm('¿Seguro desea eliminar este registro de vehiculo?')" class="btn btn-outline-danger btn-block btn-flat"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                         {% endfor%}
@@ -105,13 +105,21 @@
 
 <script>
 
+    
+
     $(document).ready(function () {
         var table = $('#myTable').DataTable({
+     
             processing: true,
+            ordering: true,
             //serverSide: true,
             responsive: true,
             autoWidth: false,
             destroy: true,
+            className: 'dt-center',
+            backgroundcolor: 'black',
+            fontSize: 'large',
+            
             /* order: [
                 [0, 'desc']
             ], */
@@ -119,7 +127,7 @@
                 "lengthMenu": "Mostrar " +
                     '<select class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="-1">All</option></select>' +
                     " registros por página",
-                "zeroRecords": "No existe registros - discupa",
+                "zeroRecords": "No existe registros - disculpa",
                 "info": "Mostrando la pagina _PAGE_ de _PAGES_",
                 "infoEmpty": "No records available",
                 "infoFiltered": "(filtrado de _MAX_ registros totales)",
@@ -133,26 +141,63 @@
         new $.fn.dataTable.Buttons(table, {
             buttons: [{
                 extend: 'pdfHtml5',
-                text: 'Abrir en PDF',
+                pageSize: 'TABLOID',
+                text: '<i class="fa fa-file-pdf-o fa-lg" style="color: red"></i> PDF',
                 download: 'open',
-                className: 'btn-danger',
-                messageTop: 'vehiculos',
+                className: 'bt-center',
+                messageTop: 'Parque automotriz de la empresa:',
                 title: 'Vehiculos',
-                orientation: 'landscape',
-                pageSize: 'LEGAL',
+                orientation: 'portrait',
+                pageSize: 'LETTER',
+                alignment:'Center',
+                autoWidth:'true',
+                
                 exportOptions: {
                     columns: [0, 1, 2, 3, 4, 5, 6, 7, 8]
                 },
                 customize: function (doc) {
+                  //  doc.defaultStyle.fontSize = 12;
+
+                   // doc.styles['td.bigcol'] = {
+                   //     fontSize: 12,
+                   //     bold: true,
+                   // };
+
+                                    
                     doc.styles.title = {
-                        color: 'red',
+                        color: 'blue',
                         fontSize: '40',
-                        alignment: 'center'
+                        alignment: 'center',
+                       
+                        
+                                             
+                        
                     }
+                    
                     doc.styles['td:nth-child(2)'] = {
+                        className: 'dt-center',
+                        backgroundcolor: 'red',
                         width: '100px',
+                        color: 'red',
+                        margin: 'auto',
+                        border: 'solid 1px #ccc',
+                        
+                        
+                        
                         'max-width': '100px'
                     }
+
+                    doc.styles.tableHeader = {
+                            bold: true,
+                            fontSize: 11,
+                            color: 'black',
+                            fillColor: 'gold',
+                            alignment: 'center',
+                    }
+                    doc.styles.table = {
+                             alignment: 'center',
+                    }
+                    
                 }
             },
             {
@@ -172,7 +217,13 @@
         table.buttons(0, null).container().appendTo(
             table.table().container()
         );
-    });
+
+
+
+     });
+
+  
+
   </script>
   
   
