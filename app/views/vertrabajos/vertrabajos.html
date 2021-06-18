@@ -26,9 +26,7 @@
         {% endfor%}
         {% endif %}
         {% endwith%}
-       <!-- <div class="col">
-            <a href="verTrabajos/ingresar_Trabajos" class="btn btn-primary btn-sm">Ingresar</a>
-        </div> -->
+      
         <div class="card mt-3 ">
             <div class="row">
 
@@ -69,10 +67,6 @@
 {% endblock %}
 <!-- Estilos CSS -->
 {% block css%}
-
-<!-- Iconos de Font awesome -->
-<!--   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"> -->
 
 <link href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.css" rel="stylesheet" />
@@ -143,14 +137,7 @@
                     columns: [0, 1, 2, 3]
                 },
                 customize: function (doc) {
-                  //  doc.defaultStyle.fontSize = 12;
-
-                   // doc.styles['td.bigcol'] = {
-                   //     fontSize: 12,
-                   //     bold: true,
-                   // };
-
-                                    
+                                                      
                     doc.styles.title = {
                         color: 'blue',
                         fontSize: '40',
@@ -189,11 +176,13 @@
             },
             {
                 extend: 'excel',
+                text: '<i class="fa fa-file-excel-o fa-lg" style="color: green"></i> EXCEL',
                 title: 'Informacion en EXCEL',
                 filename: 'Vehiculos'
             }
             , {
               extend: 'csv',
+              text: '<i class="fa fa-file-code-o fa-lg" style="color: blue"></i> CSV',
               filename: 'Vehiculos'
             }
             ],

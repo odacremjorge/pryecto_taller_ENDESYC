@@ -174,21 +174,12 @@
                     columns: [0, 2, 3, 4]
                 },
                 customize: function (doc) {
-                  //  doc.defaultStyle.fontSize = 12;
-
-                   // doc.styles['td.bigcol'] = {
-                   //     fontSize: 12,
-                   //     bold: true,
-                   // };
-
-                                    
+                                                      
                     doc.styles.title = {
                         color: 'blue',
                         fontSize: '40',
                         alignment: 'center',
-                       
-                        
-                                             
+                                                                
                         
                     }
                     
@@ -220,11 +211,13 @@
             },
             {
                 extend: 'excel',
+                text: '<i class="fa fa-file-excel-o fa-lg" style="color: green"></i> EXCEL',
                 title: 'Informacion en EXCEL',
                 filename: 'Vehiculos'
             }
             , {
               extend: 'csv',
+              text: '<i class="fa fa-file-code-o fa-lg" style="color: blue"></i> CSV',
               filename: 'Vehiculos'
             }
             ],
